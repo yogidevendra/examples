@@ -59,7 +59,7 @@ public class DataGenerator extends BaseOperator implements InputOperator
         transactionPOJO.amount = 20000 + random.nextInt(10000);
       }
       
-      transactionPOJO.type = TRANSACTION_TYPE.values()[random.nextInt(2)];
+      transactionPOJO.type = TRANSACTION_TYPE.values()[random.nextInt(2)].name();
       String accountNumber = RandomStringUtils.randomNumeric(9);
       transactionPOJO.setAccountNumber(Long.parseLong(accountNumber));
       out.emit(transactionPOJO);

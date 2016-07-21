@@ -13,7 +13,7 @@ public class TransactionPOJO
     DEBIT
   }
   
-  TRANSACTION_TYPE type;
+  String type;
 
   public long getTrasactionId()
   {
@@ -44,13 +44,13 @@ public class TransactionPOJO
   {
     this.accountNumber = accountNumber;
   }
-
-  public TRANSACTION_TYPE getType()
+  
+  public String getType()
   {
     return type;
   }
 
-  public void setType(TRANSACTION_TYPE type)
+  public void setType(String type)
   {
     this.type = type;
   }

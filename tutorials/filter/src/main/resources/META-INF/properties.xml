@@ -23,6 +23,30 @@
     <value>({$}.getAmount() >= 20000)</value>
   </property>
   <property>
+    <name>dt.application.FilterExample.operator.selectedFormatter.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "amount","type": "double"},{"name": "type","type": "String"}]}</value>
+  </property>
+  <property>
+    <name>dt.application.FilterExample.operator.rejectedFormatter.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "amount","type": "double"},{"name": "type","type": "String"}]}</value>
+  </property>
+  <property>
+    <name>dt.application.FilterExample.operator.selectedOutput.prop.filePath</name>
+    <value>/tmp</value>
+  </property>
+  <property>
+    <name>dt.application.FilterExample.operator.selectedOutput.prop.outputFileName</name>
+    <value>selected.txt</value>
+  </property>
+  <property>
+    <name>dt.application.FilterExample.operator.rejectedOutput.prop.filePath</name>
+    <value>/tmp</value>
+  </property>
+  <property>
+    <name>dt.application.FilterExample.operator.rejectedOutput.prop.outputFileName</name>
+    <value>rejected.txt</value>
+  </property>
+  <property>
     <name>dt.application.FilterExample.operator.filteredInConsole.prop.stringFormat</name>
     <value>IN:%s</value>
   </property>

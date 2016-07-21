@@ -25,7 +25,7 @@ public class ApplicationTest
   @Test
   public void testApplication() throws IOException, Exception
   {
-    runTestApplication(new Application(), 10);
+    runTestApplication(new Application(), 2);
   }
 
   public static void runTestApplication(StreamingApplication application, int seconds) throws IOException, Exception
