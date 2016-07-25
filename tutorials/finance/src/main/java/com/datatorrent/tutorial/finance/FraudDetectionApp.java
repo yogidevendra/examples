@@ -40,22 +40,22 @@ public class FraudDetectionApp implements StreamingApplication
         new KafkaSinglePortOutputOperator<String, String>());
     StringFileOutputOperator validTxnHDFSOutput = dag.addOperator("validTxnHDFSOutput", new StringFileOutputOperator());
 
-    dag.addStream("data", kafkaInputOperator.outputPort, parser.in).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("data", kafkaInputOperator.outputPort, parser.in);
     dag.setInputPortAttribute(parser.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("pojo", parser.out, filterOperator.input).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("pojo", parser.out, filterOperator.input);
     dag.setInputPortAttribute(filterOperator.input, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxn", filterOperator.truePort, fraudFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("fraudTxn", filterOperator.truePort, fraudFormatter.in);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxnMsg", fraudFormatter.out, fraudTxnKafkaOutput.inputPort).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("fraudTxnMsg", fraudFormatter.out, fraudTxnKafkaOutput.inputPort);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxn", filterOperator.falsePort, validFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("validTxn", filterOperator.falsePort, validFormatter.in);
     dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
     
     List<String> clusters = new ArrayList<String>();
@@ -65,7 +65,7 @@ public class FraudDetectionApp implements StreamingApplication
     
     List<String> topics = new ArrayList<String>();
     topics.add("transactions0");
-    //topics.add("transactions1");
+    topics.add("transactions1");
     kafkaInputOperator.setTopics(topics);
     
     fraudTxnKafkaOutput.setTopic("fraudTxn");
