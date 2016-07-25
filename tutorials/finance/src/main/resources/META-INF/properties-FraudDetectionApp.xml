@@ -65,5 +65,10 @@
     <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput.prop.outputFileName</name>
     <value>valid_txn.txt</value>
   </property>
+  
+  <property>
+      <name>dt.application.FraudDetectionApp.operator.validFormatter.attr.PARTITIONER</name>
+      <value>com.datatorrent.common.partitioner.StatelessPartitioner:2</value>
+  </property>
 </configuration>
 

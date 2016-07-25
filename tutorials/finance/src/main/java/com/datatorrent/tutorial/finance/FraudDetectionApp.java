@@ -55,7 +55,7 @@ public class FraudDetectionApp implements StreamingApplication
     dag.addStream("validTxn", filterOperator.falsePort, validFormatter.in);
     dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input).setLocality(Locality.THREAD_LOCAL);
+    dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input);
     dag.setInputPortAttribute(validTxnHDFSOutput.input, PortContext.PARTITION_PARALLEL, true);
     
     List<String> clusters = new ArrayList<String>();
