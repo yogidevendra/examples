@@ -56,7 +56,6 @@
     <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput.prop.producerProperties</name>
     <value>serializer.class=kafka.serializer.StringEncoder,producer.type=async,metadata.broker.list=node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098</value>
   </property>
-  
   <property>
     <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput.prop.filePath</name>
     <value>/tmp</value>

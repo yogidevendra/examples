@@ -24,8 +24,4 @@
     <name>dt.application.DataGeneratorApp.operator.dataWriter.prop.bootstrapServers</name>
     <value>node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098</value>
   </property>
-  <property>
-    <name>dt.application.DataGeneratorApp.operator.dataWriter.prop.maxTuplesPerWindow</name>
-    <value>1000</value>
-  </property>
 </configuration>

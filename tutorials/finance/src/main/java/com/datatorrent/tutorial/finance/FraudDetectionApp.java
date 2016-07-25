@@ -7,11 +7,13 @@ import org.apache.apex.malhar.lib.fs.GenericFileOutputOperator.StringFileOutputO
 import org.apache.hadoop.conf.Configuration;
 
 import com.datatorrent.api.Context;
+import com.datatorrent.api.Context.OperatorContext;
 import com.datatorrent.api.Context.PortContext;
 import com.datatorrent.api.DAG;
 import com.datatorrent.api.DAG.Locality;
 import com.datatorrent.api.StreamingApplication;
 import com.datatorrent.api.annotation.ApplicationAnnotation;
+import com.datatorrent.common.partitioner.StatelessPartitioner;
 import com.datatorrent.contrib.formatter.CsvFormatter;
 import com.datatorrent.contrib.kafka.KafkaSinglePortOutputOperator;
 import com.datatorrent.contrib.parser.CsvParser;
@@ -35,6 +37,7 @@ public class FraudDetectionApp implements StreamingApplication
     FilterOperator filterOperator = dag.addOperator("filterOperator", new FilterOperator());
     CsvFormatter fraudFormatter = dag.addOperator("fraudFormatter", new CsvFormatter());
     CsvFormatter validFormatter = dag.addOperator("validFormatter", new CsvFormatter());
+    dag.setAttribute(validFormatter, OperatorContext.PARTITIONER, new StatelessPartitioner<>(2));
 
     KafkaSinglePortOutputOperator<String, String> fraudTxnKafkaOutput = dag.addOperator("fraudTxnKafkaOutput",
         new KafkaSinglePortOutputOperator<String, String>());
