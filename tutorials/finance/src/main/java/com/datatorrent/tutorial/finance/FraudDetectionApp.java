@@ -9,6 +9,7 @@ import org.apache.hadoop.conf.Configuration;
 import com.datatorrent.api.Context;
 import com.datatorrent.api.Context.PortContext;
 import com.datatorrent.api.DAG;
+import com.datatorrent.api.DAG.Locality;
 import com.datatorrent.api.StreamingApplication;
 import com.datatorrent.api.annotation.ApplicationAnnotation;
 import com.datatorrent.contrib.formatter.CsvFormatter;
@@ -39,22 +40,22 @@ public class FraudDetectionApp implements StreamingApplication
         new KafkaSinglePortOutputOperator<String, String>());
     StringFileOutputOperator validTxnHDFSOutput = dag.addOperator("validTxnHDFSOutput", new StringFileOutputOperator());
 
-    dag.addStream("data", kafkaInputOperator.outputPort, parser.in);
+    dag.addStream("data", kafkaInputOperator.outputPort, parser.in).setLocality(Locality.THREAD_LOCAL);
     dag.setInputPortAttribute(parser.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("pojo", parser.out, filterOperator.input);
+    dag.addStream("pojo", parser.out, filterOperator.input).setLocality(Locality.THREAD_LOCAL);
     dag.setInputPortAttribute(filterOperator.input, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxn", filterOperator.truePort, fraudFormatter.in);
+    dag.addStream("fraudTxn", filterOperator.truePort, fraudFormatter.in).setLocality(Locality.THREAD_LOCAL);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxnMsg", fraudFormatter.out, fraudTxnKafkaOutput.inputPort);
+    dag.addStream("fraudTxnMsg", fraudFormatter.out, fraudTxnKafkaOutput.inputPort).setLocality(Locality.THREAD_LOCAL);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxn", filterOperator.falsePort, validFormatter.in);
+    dag.addStream("validTxn", filterOperator.falsePort, validFormatter.in).setLocality(Locality.THREAD_LOCAL);
     dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input);
+    dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input).setLocality(Locality.THREAD_LOCAL);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
     
     List<String> clusters = new ArrayList<String>();
@@ -68,9 +69,6 @@ public class FraudDetectionApp implements StreamingApplication
     kafkaInputOperator.setTopics(topics);
     
     fraudTxnKafkaOutput.setTopic("fraudTxn");
-    
-    
-    
     
     dag.getMeta(parser).getMeta(parser.out).getAttributes().put(Context.PortContext.TUPLE_CLASS, TransactionPOJO.class);
     dag.getMeta(filterOperator).getMeta(filterOperator.input).getAttributes().put(Context.PortContext.TUPLE_CLASS, TransactionPOJO.class);
