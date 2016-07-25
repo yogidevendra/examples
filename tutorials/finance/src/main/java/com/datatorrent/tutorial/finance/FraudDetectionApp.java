@@ -37,7 +37,7 @@ public class FraudDetectionApp implements StreamingApplication
     FilterOperator filterOperator = dag.addOperator("filterOperator", new FilterOperator());
     CsvFormatter fraudFormatter = dag.addOperator("fraudFormatter", new CsvFormatter());
     CsvFormatter validFormatter = dag.addOperator("validFormatter", new CsvFormatter());
-    dag.setAttribute(validFormatter, OperatorContext.PARTITIONER, new StatelessPartitioner<>(8));
+    //dag.setAttribute(validFormatter, OperatorContext.PARTITIONER, new StatelessPartitioner<>(8));
 
     KafkaSinglePortOutputOperator<String, String> fraudTxnKafkaOutput = dag.addOperator("fraudTxnKafkaOutput",
         new KafkaSinglePortOutputOperator<String, String>());
