@@ -59,7 +59,7 @@ public class FraudDetectionApp implements StreamingApplication
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
     
     List<String> clusters = new ArrayList<String>();
-    clusters.add("localhost:9092");
+    clusters.add("node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098");
     kafkaInputOperator.setClusters(clusters);
     
     

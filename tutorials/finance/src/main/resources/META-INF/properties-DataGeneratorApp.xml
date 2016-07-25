@@ -22,7 +22,7 @@
   </property>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataWriter.prop.bootstrapServers</name>
-    <value>localhost:9092</value>
+    <value>node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098</value>
   </property>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataWriter.prop.maxTuplesPerWindow</name>
