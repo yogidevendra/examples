@@ -32,41 +32,121 @@
     <name>dt.application.FraudDetectionApp.prop.parallelPipelines</name>
     <value>3</value>
   </property>
+  
   <property>
-    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator_*.prop.initialOffset</name>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator_0.prop.initialOffset</name>
+    <value>LATEST</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator_1.prop.initialOffset</name>
+    <value>LATEST</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator_2.prop.initialOffset</name>
     <value>LATEST</value>
   </property>
   
   <property>
-    <name>dt.application.FraudDetectionApp.operator.parser_*.prop.schema</name>
+    <name>dt.application.FraudDetectionApp.operator.parser_0.prop.schema</name>
     <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.filterOperator_*.prop.condition</name>
+    <name>dt.application.FraudDetectionApp.operator.parser_1.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.parser_2.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>
+
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.filterOperator_0.prop.condition</name>
     <value>({$}.getAmount() >= 50000)</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.fraudFormatter_*.prop.schema</name>
+    <name>dt.application.FraudDetectionApp.operator.filterOperator_1.prop.condition</name>
+    <value>({$}.getAmount() >= 50000)</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.filterOperator_2.prop.condition</name>
+    <value>({$}.getAmount() >= 50000)</value>
+  </property>
+
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudFormatter_0.prop.schema</name>
     <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.validFormatter_*.prop.schema</name>
+    <name>dt.application.FraudDetectionApp.operator.fraudFormatter_1.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>  
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudFormatter_2.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>  
+
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validFormatter_0.prop.schema</name>
     <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_*.prop.topics</name>
+    <name>dt.application.FraudDetectionApp.operator.validFormatter_1.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validFormatter_2.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>
+
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_0.prop.topics</name>
     <value>fraudTxn</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_*.prop.producerProperties</name>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_1.prop.topics</name>
+    <value>fraudTxn</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_2.prop.topics</name>
+    <value>fraudTxn</value>
+  </property>
+
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_0.prop.producerProperties</name>
     <value>serializer.class=kafka.serializer.StringEncoder,producer.type=async,metadata.broker.list=node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_*.prop.filePath</name>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_1.prop.producerProperties</name>
+    <value>serializer.class=kafka.serializer.StringEncoder,producer.type=async,metadata.broker.list=node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_2.prop.producerProperties</name>
+    <value>serializer.class=kafka.serializer.StringEncoder,producer.type=async,metadata.broker.list=node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098</value>
+  </property>
+
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_0.prop.filePath</name>
     <value>/tmp</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_*.prop.outputFileName</name>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_1.prop.filePath</name>
+    <value>/tmp</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_2.prop.filePath</name>
+    <value>/tmp</value>
+  </property>
+
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_0.prop.outputFileName</name>
+    <value>valid_txn.txt</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_1.prop.outputFileName</name>
+    <value>valid_txn.txt</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_2.prop.outputFileName</name>
     <value>valid_txn.txt</value>
   </property>
 </configuration>
