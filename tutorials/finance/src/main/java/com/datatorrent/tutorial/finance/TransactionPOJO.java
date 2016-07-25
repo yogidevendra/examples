@@ -46,6 +46,6 @@ public class TransactionPOJO
   @Override
   public int hashCode()
   {
-    return (int) accountNumber;
+    return (int) accountNumber%64;
   }
 }
