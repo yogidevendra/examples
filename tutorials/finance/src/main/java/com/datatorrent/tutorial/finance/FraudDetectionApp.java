@@ -56,7 +56,7 @@ public class FraudDetectionApp implements StreamingApplication
     dag.setInputPortAttribute(fraudTxnKafkaOutput.inputPort, PortContext.PARTITION_PARALLEL, true);
 
     dag.addStream("validTxn", filterOperator.falsePort, validFormatter.in);
-    dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
+    //dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
     dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input);
     //dag.setInputPortAttribute(validTxnHDFSOutput.input, PortContext.PARTITION_PARALLEL, true);
