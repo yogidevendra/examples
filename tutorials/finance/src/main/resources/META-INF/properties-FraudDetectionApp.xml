@@ -27,6 +27,11 @@
     <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator.prop.topics[1]</name>
     <value>transactions1</value>
   </property> -->
+  
+  <property>
+    <name>dt.application.FraudDetectionApp.prop.parallelPipelines</name>
+    <value>3</value>
+  </property>
   <property>
     <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator.prop.initialOffset</name>
     <value>LATEST</value>
@@ -63,11 +68,6 @@
   <property>
     <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput.prop.outputFileName</name>
     <value>valid_txn.txt</value>
-  </property>
-  
-  <property>
-      <name>dt.application.FraudDetectionApp.operator.validFormatter.attr.PARTITIONER</name>
-      <value>com.datatorrent.common.partitioner.StatelessPartitioner:8</value>
   </property>
 </configuration>
 
