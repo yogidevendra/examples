@@ -33,40 +33,40 @@
     <value>3</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator.prop.initialOffset</name>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator_*.prop.initialOffset</name>
     <value>LATEST</value>
   </property>
   
   <property>
-    <name>dt.application.FraudDetectionApp.operator.parser.prop.schema</name>
+    <name>dt.application.FraudDetectionApp.operator.parser_*.prop.schema</name>
     <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.filterOperator.prop.condition</name>
+    <name>dt.application.FraudDetectionApp.operator.filterOperator_*.prop.condition</name>
     <value>({$}.getAmount() >= 50000)</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.fraudFormatter.prop.schema</name>
+    <name>dt.application.FraudDetectionApp.operator.fraudFormatter_*.prop.schema</name>
     <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.validFormatter.prop.schema</name>
+    <name>dt.application.FraudDetectionApp.operator.validFormatter_*.prop.schema</name>
     <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput.prop.topics</name>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_*.prop.topics</name>
     <value>fraudTxn</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput.prop.producerProperties</name>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput_*.prop.producerProperties</name>
     <value>serializer.class=kafka.serializer.StringEncoder,producer.type=async,metadata.broker.list=node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput.prop.filePath</name>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_*.prop.filePath</name>
     <value>/tmp</value>
   </property>
   <property>
-    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput.prop.outputFileName</name>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput_*.prop.outputFileName</name>
     <value>valid_txn.txt</value>
   </property>
 </configuration>
