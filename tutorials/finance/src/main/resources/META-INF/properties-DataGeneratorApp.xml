@@ -2,7 +2,7 @@
 <configuration>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataGenerator.prop.numTuples</name>
-    <value>100000</value>
+    <value>50000</value>
   </property>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataGenerator.prop.accountNoDigits</name>
