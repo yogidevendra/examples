@@ -59,7 +59,7 @@ public class FraudDetectionApp implements StreamingApplication
     dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
     dag.addStream("validTxnMsg", validFormatter.out, validTxnHDFSOutput.input);
-    dag.setInputPortAttribute(validTxnHDFSOutput.input, PortContext.PARTITION_PARALLEL, true);
+    //dag.setInputPortAttribute(validTxnHDFSOutput.input, PortContext.PARTITION_PARALLEL, true);
     
     List<String> clusters = new ArrayList<String>();
     clusters.add("node32.morado.com:9098,node34.morado.com:9098,node35.morado.com:9098");
