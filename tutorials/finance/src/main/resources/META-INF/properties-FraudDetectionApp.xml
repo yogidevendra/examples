@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- 
+  <property>
+    <name>dt.application.{appName}.operator.{opName}.prop.{propName}</name>
+    <value>some-default-value (if value is not specified, it is required from the user or custom config when launching)</value>
+  </property>
+  -->
+  <!-- memory assigned to app master
+  <property>
+    <name>dt.attr.MASTER_MEMORY_MB</name>
+    <value>1024</value>
+  </property>
+  -->
+
+  <!-- these values override those set in populateDAG -->
+  
+  <!--property>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator.prop.clusters[0]</name>
+    <value>localhost:9092</value>
+  </property> 
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator.prop.topics[0]</name>
+    <value>transactions0</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator.prop.topics[1]</name>
+    <value>transactions1</value>
+  </property> -->
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.kafkaInputOperator.prop.initialOffset</name>
+    <value>LATEST</value>
+  </property>
+  
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.parser.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.filterOperator.prop.condition</name>
+    <value>({$}.getAmount() >= 50000)</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudFormatter.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validFormatter.prop.schema</name>
+    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "accountNumber","type": "long"},{"name": "amount","type": "integer"}]}</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput.prop.topics</name>
+    <value>fraudTxn</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.fraudTxnKafkaOutput.prop.producerProperties</name>
+    <value>serializer.class=kafka.serializer.StringEncoder,producer.type=async,metadata.broker.list=localhost:9092</value>
+  </property>
+  
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput.prop.filePath</name>
+    <value>/tmp</value>
+  </property>
+  <property>
+    <name>dt.application.FraudDetectionApp.operator.validTxnHDFSOutput.prop.outputFileName</name>
+    <value>valid_txn.txt</value>
+  </property>
+</configuration>
+
