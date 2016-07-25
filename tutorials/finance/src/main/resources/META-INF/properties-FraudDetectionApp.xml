@@ -67,7 +67,7 @@
   
   <property>
       <name>dt.application.FraudDetectionApp.operator.validFormatter.attr.PARTITIONER</name>
-      <value>com.datatorrent.common.partitioner.StatelessPartitioner:16</value>
+      <value>com.datatorrent.common.partitioner.StatelessPartitioner:8</value>
   </property>
 </configuration>
 
