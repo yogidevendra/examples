@@ -2,11 +2,11 @@
 <configuration>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataGenerator.prop.numTuples</name>
-    <value>50000</value>
+    <value>100000</value>
   </property>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataGenerator.prop.accountNoDigits</name>
-    <value>4</value>
+    <value>9</value>
   </property>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataGenerator.prop.sleepTime</name>
@@ -18,7 +18,7 @@
   </property>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataWriter.prop.numTopics</name>
-    <value>2</value>
+    <value>4</value>
   </property>
   <property>
     <name>dt.application.DataGeneratorApp.operator.dataWriter.prop.bootstrapServers</name>

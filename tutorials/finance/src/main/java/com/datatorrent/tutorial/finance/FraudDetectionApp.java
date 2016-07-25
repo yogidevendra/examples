@@ -66,6 +66,8 @@ public class FraudDetectionApp implements StreamingApplication
     List<String> topics = new ArrayList<String>();
     topics.add("transactions0");
     topics.add("transactions1");
+    topics.add("transactions2");
+    topics.add("transactions3");
     kafkaInputOperator.setTopics(topics);
     
     fraudTxnKafkaOutput.setTopic("fraudTxn");
