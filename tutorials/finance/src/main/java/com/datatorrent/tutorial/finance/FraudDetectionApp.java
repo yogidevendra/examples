@@ -39,32 +39,32 @@ public class FraudDetectionApp implements StreamingApplication
   public void populatePipeline(DAG dag, int pipelineIndex){
 
     // create operators
-    KafkaInputOperator kafkaInputOperator = dag.addOperator("kafkaInputOperator_"+pipelineIndex, new KafkaInputOperator());
-    CsvParser parser = dag.addOperator("parser_"+pipelineIndex, new CsvParser());
-    FilterOperator filterOperator = dag.addOperator("filterOperator_"+pipelineIndex, new FilterOperator());
-    CsvFormatter fraudFormatter = dag.addOperator("fraudFormatter_"+pipelineIndex, new CsvFormatter());
-    CsvFormatter validFormatter = dag.addOperator("validFormatter_"+pipelineIndex, new CsvFormatter());
+    KafkaInputOperator kafkaInputOperator = dag.addOperator("KafkaInputOperator_"+pipelineIndex, new KafkaInputOperator());
+    CsvParser parser = dag.addOperator("DataParser_"+pipelineIndex, new CsvParser());
+    FilterOperator filterOperator = dag.addOperator("FraudDetector_"+pipelineIndex, new FilterOperator());
+    CsvFormatter fraudFormatter = dag.addOperator("FraudTxnConverter_"+pipelineIndex, new CsvFormatter());
+    CsvFormatter validFormatter = dag.addOperator("ValidTxnConverter_"+pipelineIndex, new CsvFormatter());
 
-    KafkaSinglePortOutputOperator<String, String> fraudTxnKafkaOutput = dag.addOperator("fraudTxnKafkaOutput_"+pipelineIndex,
+    KafkaSinglePortOutputOperator<String, String> fraudTxnKafkaOutput = dag.addOperator("FraudTxnKafkaOutput_"+pipelineIndex,
         new KafkaSinglePortOutputOperator<String, String>());
-    StringFileOutputOperator validTxnHDFSOutput = dag.addOperator("validTxnHDFSOutput_"+pipelineIndex, new StringFileOutputOperator());
+    StringFileOutputOperator validTxnHDFSOutput = dag.addOperator("ValidTxnHDFSOutput_"+pipelineIndex, new StringFileOutputOperator());
 
-    dag.addStream("data_"+pipelineIndex, kafkaInputOperator.outputPort, parser.in).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("Txn_"+pipelineIndex, kafkaInputOperator.outputPort, parser.in).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(parser.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("pojo_"+pipelineIndex, parser.out, filterOperator.input).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("TxnObj_"+pipelineIndex, parser.out, filterOperator.input).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(filterOperator.input, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxn_"+pipelineIndex, filterOperator.truePort, fraudFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("FraudTxn_"+pipelineIndex, filterOperator.truePort, fraudFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxnMsg_"+pipelineIndex, fraudFormatter.out, fraudTxnKafkaOutput.inputPort).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("FraudTxnMsg_"+pipelineIndex, fraudFormatter.out, fraudTxnKafkaOutput.inputPort).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(fraudTxnKafkaOutput.inputPort, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxn_"+pipelineIndex, filterOperator.falsePort, validFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("ValidTxn_"+pipelineIndex, filterOperator.falsePort, validFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxnMsg_"+pipelineIndex, validFormatter.out, validTxnHDFSOutput.input).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("ValidTxnMsg_"+pipelineIndex, validFormatter.out, validTxnHDFSOutput.input).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(validTxnHDFSOutput.input, PortContext.PARTITION_PARALLEL, true);
     
     List<String> clusters = new ArrayList<String>();
