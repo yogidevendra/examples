@@ -49,22 +49,22 @@ public class FraudDetectionApp implements StreamingApplication
         new KafkaSinglePortOutputOperator<String, String>());
     StringFileOutputOperator validTxnHDFSOutput = dag.addOperator("validTxnHDFSOutput_"+pipelineIndex, new StringFileOutputOperator());
 
-    dag.addStream("data_"+pipelineIndex, kafkaInputOperator.outputPort, parser.in).setLocality(Locality.THREAD_LOCAL);
+    dag.addStream("data_"+pipelineIndex, kafkaInputOperator.outputPort, parser.in).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(parser.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("pojo_"+pipelineIndex, parser.out, filterOperator.input).setLocality(Locality.THREAD_LOCAL);
+    dag.addStream("pojo_"+pipelineIndex, parser.out, filterOperator.input).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(filterOperator.input, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxn_"+pipelineIndex, filterOperator.truePort, fraudFormatter.in).setLocality(Locality.THREAD_LOCAL);
+    dag.addStream("fraudTxn_"+pipelineIndex, filterOperator.truePort, fraudFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(fraudFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("fraudTxnMsg_"+pipelineIndex, fraudFormatter.out, fraudTxnKafkaOutput.inputPort).setLocality(Locality.THREAD_LOCAL);
+    dag.addStream("fraudTxnMsg_"+pipelineIndex, fraudFormatter.out, fraudTxnKafkaOutput.inputPort).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(fraudTxnKafkaOutput.inputPort, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxn_"+pipelineIndex, filterOperator.falsePort, validFormatter.in).setLocality(Locality.THREAD_LOCAL);
+    dag.addStream("validTxn_"+pipelineIndex, filterOperator.falsePort, validFormatter.in).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(validFormatter.in, PortContext.PARTITION_PARALLEL, true);
 
-    dag.addStream("validTxnMsg_"+pipelineIndex, validFormatter.out, validTxnHDFSOutput.input).setLocality(Locality.THREAD_LOCAL);
+    dag.addStream("validTxnMsg_"+pipelineIndex, validFormatter.out, validTxnHDFSOutput.input).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(validTxnHDFSOutput.input, PortContext.PARTITION_PARALLEL, true);
     
     List<String> clusters = new ArrayList<String>();
