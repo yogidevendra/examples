@@ -16,69 +16,37 @@
   <!-- these values override those set in populateDAG -->
   
   <property>
-       <name>dt.application.FilterExample.operator.*.attr.MEMORY_MB</name>
+       <name>dt.application.S3FileCopyApp.operator.*.attr.MEMORY_MB</name>
        <value>750</value>
   </property>
   
   <property>
-    <name>dt.application.FilterExample.operator.dataGenerator.prop.numTuples</name>
+    <name>dt.application.S3FileCopyApp.attr.CHECKPOINT_WINDOW_COUNT</name>
+    <value>10</value>
+  </property>
+  <property>
+    <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.files</name>
+    <value>s3n://ACCESS_KEY_ID:SECRET_KEY@BUCKET_NAME/DIRECTORY</value>
+  </property>
+  <property>
+    <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.blocksThreshold</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.scanIntervalMillis</name>
     <value>10000</value>
   </property>
   <property>
-    <name>dt.application.FilterExample.operator.dataGenerator.prop.sleepTime</name>
-    <value>100</value>
+    <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.dedup</name>
+    <value>true</value>
   </property>
   <property>
-    <name>dt.application.FilterExample.operator.filterOperator.port.input.attr.TUPLE_CLASS</name>
-    <value>com.datatorrent.tutorial.filter.TransactionPOJO</value>
+    <name>dt.application.S3FileCopyApp.operator.HDFSFileCopyModule.prop.outputDirectoryPath</name>
+    <value>output</value>
   </property>
   <property>
-    <name>dt.application.FilterExample.operator.selectedFormatter.port.in.attr.TUPLE_CLASS</name>
-    <value>com.datatorrent.tutorial.filter.TransactionPOJO</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.rejectedFormatter.port.in.attr.TUPLE_CLASS</name>
-    <value>com.datatorrent.tutorial.filter.TransactionPOJO</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.filterOperator.prop.condition</name>
-    <value>({$}.getAmount() >= 20000)</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.filterOperator.prop.expressionFunctionsItem[5]</name>
-    <value>org.apache.commons.lang3.BooleanUtils.*</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.selectedFormatter.prop.schema</name>
-    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "amount","type": "double"},{"name": "type","type": "String"}]}</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.rejectedFormatter.prop.schema</name>
-    <value>{"separator": "|","quoteChar":"\"","lineDelimiter":"","fields": [{"name": "trasactionId","type": "long"},{"name": "amount","type": "double"},{"name": "type","type": "String"}]}</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.selectedOutput.prop.filePath</name>
-    <value>file:///tmp</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.selectedOutput.prop.outputFileName</name>
-    <value>selected.txt</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.rejectedOutput.prop.filePath</name>
-    <value>file:///tmp</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.rejectedOutput.prop.outputFileName</name>
-    <value>rejected.txt</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.filteredInConsole.prop.stringFormat</name>
-    <value>IN:%s</value>
-  </property>
-  <property>
-    <name>dt.application.FilterExample.operator.filteredOutConsole.prop.stringFormat</name>
-    <value>OUT:%s</value>
+    <name>dt.loggers.level</name>
+    <value>com.datatorrent.*:DEBUG,org.apache.*:INFO</value>
   </property>
 </configuration>
 

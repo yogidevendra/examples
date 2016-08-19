@@ -1,4 +1,4 @@
-package com.datatorrent.tutorial.filter;
+package com.datatorrent.tutorial.s3input;
 /**
  * Copyright (c) 2016 DataTorrent, Inc.
  * All rights reserved.
@@ -15,7 +15,7 @@ import org.apache.hadoop.conf.Configuration;
 
 import com.datatorrent.api.LocalMode;
 import com.datatorrent.api.StreamingApplication;
-import com.datatorrent.tutorial.s3input.Application;
+import com.datatorrent.tutorial.s3input.S3FileCopyApplication;;
 
 /**
  * Test the DAG declaration in local mode.
@@ -26,7 +26,7 @@ public class ApplicationTest
   @Test
   public void testApplication() throws IOException, Exception
   {
-    runTestApplication(new Application(), 2);
+    runTestApplication(new S3FileCopyApplication(), 10);
   }
 
   public static void runTestApplication(StreamingApplication application, int seconds) throws IOException, Exception
@@ -38,7 +38,7 @@ public class ApplicationTest
       conf.addResource(application.getClass().getResourceAsStream("/META-INF/properties.xml"));
       lma.prepareDAG(application, conf);
       LocalMode.Controller lc = lma.getController();
-      lc.run(10 * 1000); // runs for 10 seconds and quits
+      lc.run(seconds * 1000); 
     } catch (ConstraintViolationException e) {
       Assert.fail("constraint violations: " + e.getConstraintViolations());
     }
