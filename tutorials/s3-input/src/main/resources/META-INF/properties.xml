@@ -19,22 +19,13 @@
        <name>dt.application.S3FileCopyApp.operator.*.attr.MEMORY_MB</name>
        <value>750</value>
   </property>
-  
-  <property>
-    <name>dt.application.S3FileCopyApp.attr.CHECKPOINT_WINDOW_COUNT</name>
-    <value>10</value>
-  </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.files</name>
      <value>s3n://ACCESS_KEY_ID:SECRET_KEY@BUCKET_NAME/DIRECTORY</value>
   </property>
   <property>
-    <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.blockSize</name>
-    <value>10</value>
-  </property>
-  <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.blocksThreshold</name>
-    <value>1</value>
+    <value>2</value>
   </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.scanIntervalMillis</name>
