@@ -28,6 +28,10 @@
     <value>2</value>
   </property>
   <property>
+    <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.readersCount</name>
+    <value>4</value>
+  </property>
+  <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.scanIntervalMillis</name>
     <value>10000</value>
   </property>
