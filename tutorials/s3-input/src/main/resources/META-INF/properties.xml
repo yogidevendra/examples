@@ -17,7 +17,7 @@
   
   <property>
        <name>dt.application.S3FileCopyApp.operator.*.attr.MEMORY_MB</name>
-       <value>750</value>
+       <value>2750</value>
   </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.files</name>
