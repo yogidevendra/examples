@@ -12,6 +12,8 @@
   <description>Apex application demonstrating S3 Input</description>
 
   <properties>
+    <!-- skip tests by default as they depend on external setup -->
+    <skipTests>true</skipTests>
     <!-- change this if you desire to use a different version of Apex Core -->
     <apex.version>3.4.0</apex.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
