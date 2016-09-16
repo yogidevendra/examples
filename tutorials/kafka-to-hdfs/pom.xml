@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
-  <groupId>com.example</groupId>
-  <version>1.0-SNAPSHOT</version>
-  <artifactId>hdfsToKafka</artifactId>
+
+  <groupId>com.datatorrent</groupId>
+  <version>0.8</version>
+  <artifactId>kafka-to-hdfs-sync</artifactId>
   <packaging>jar</packaging>
 
   <!-- change these to the appropriate values -->
-  <name>HDFS to Kafka</name>
-  <description>Simple application to transfer data from HDFS to Kafka</description>
+  <name>Kafka to HDFS Sync App</name>
+  <description>
+    Ingest messages from Apache Kafka to Hadoop HDFS. This application reads messages from configured Kafka topi c and writes each message as a line in HDFS files. Send feedback or feature requests to feedback@datatorrent.com
+  </description>
 
   <properties>
     <!-- change this if you desire to use a different version of Apex Core -->
     <apex.version>3.4.0</apex.version>
-    <malhar.version>3.4.0</malhar.version>
+    <malhar.version>3.5.0</malhar.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
+    <skipTests>true</skipTests>
   </properties>
 
   <build>
@@ -238,24 +241,36 @@
     <dependency>
       <groupId>org.apache.apex</groupId>
       <artifactId>malhar-library</artifactId>
-      <version>3.4.0</version>
-      <!-- 
-           If you know that your application does not need transitive dependencies pulled in by malhar-library,
-           uncomment the following to reduce the size of your app package.
-      -->
-      <!--    
+      <version>${malhar.version}</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
           <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
-      -->
+      
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.apex</groupId>
+      <artifactId>malhar-kafka</artifactId>
+      <version>${malhar.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>0.9.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.apex</groupId>
       <artifactId>malhar-contrib</artifactId>
-      <version>3.4.0</version>
+      <version>${malhar.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.apex</groupId>
@@ -275,41 +290,7 @@
       <version>${apex.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka_2.8.2</artifactId>
-      <version>0.8.1</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-simple</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.zookeeper</groupId>
-          <artifactId>zookeeper</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>info.batey.kafka</groupId>
-      <artifactId>kafka-unit</artifactId>
-      <version>0.3</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
   </dependencies>
 
 </project>
+
