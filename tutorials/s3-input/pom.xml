@@ -2,20 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>com.datatorrent.tutorial</groupId>
-  <version>1.0-SNAPSHOT</version>
-  <artifactId>s3-input</artifactId>
+  <groupId>com.datatorrent.apps</groupId>
+  <version>0.8</version>
+  <artifactId>s3-to-hdfs-sync</artifactId>
   <packaging>jar</packaging>
 
   <!-- change these to the appropriate values -->
-  <name>S3 Input application</name>
-  <description>Apex application demonstrating S3 Input</description>
+  <name>S3 to HDFS Sync App</name>
+  <description>Ingest and backup Amazon S3 data to Hadoop HDFS for data download from Amazon to hadoop. 
+  This application transfers files from the configured S3 location to the destination path in HDFS.
+  Send feedback or feature requests tofeedback@datatorrent.com</description>
 
   <properties>
     <!-- skip tests by default as they depend on external setup -->
     <skipTests>true</skipTests>
     <!-- change this if you desire to use a different version of Apex Core -->
     <apex.version>3.4.0</apex.version>
+    <malhar.version>3.5.0</malhar.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
   </properties>
 
@@ -239,11 +242,7 @@
     <dependency>
       <groupId>org.apache.apex</groupId>
       <artifactId>malhar-library</artifactId>
-      <version>3.5.0-SNAPSHOT</version>
-      <!-- 
-           If you know that your application does not need transitive dependencies pulled in by malhar-library,
-           uncomment the following to reduce the size of your app package.
-      -->
+      <version>${malhar.version}</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
