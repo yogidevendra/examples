@@ -17,7 +17,7 @@
   
   <property>
        <name>dt.application.S3FileCopyApp.operator.*.attr.MEMORY_MB</name>
-       <value>2750</value>
+       <value>750</value>
   </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.files</name>
@@ -25,7 +25,7 @@
   </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.blocksThreshold</name>
-    <value>2</value>
+    <value>1</value>
   </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.readersCount</name>

@@ -11,7 +11,7 @@
   <name>S3 to HDFS Sync App</name>
   <description>Ingest and backup Amazon S3 data to Hadoop HDFS for data download from Amazon to hadoop. 
   This application transfers files from the configured S3 location to the destination path in HDFS.
-  Send feedback or feature requests tofeedback@datatorrent.com</description>
+  Send feedback or feature requests to feedback@datatorrent.com</description>
 
   <properties>
     <!-- skip tests by default as they depend on external setup -->
@@ -20,6 +20,7 @@
     <apex.version>3.4.0</apex.version>
     <malhar.version>3.5.0</malhar.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
+    <tags>app</tags>
   </properties>
 
   <build>
