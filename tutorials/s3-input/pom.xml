@@ -20,7 +20,6 @@
     <apex.version>3.4.0</apex.version>
     <malhar.version>3.5.0</malhar.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
-    <tags>app</tags>
   </properties>
 
   <build>
