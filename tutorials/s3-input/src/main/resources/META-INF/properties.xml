@@ -29,7 +29,7 @@
   </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.readersCount</name>
-    <value>4</value>
+    <value>2</value>
   </property>
   <property>
     <name>dt.application.S3FileCopyApp.operator.S3InputModule.prop.scanIntervalMillis</name>
