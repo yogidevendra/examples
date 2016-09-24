@@ -14,6 +14,8 @@
 | hdfs2kafka        | Shows how to read from HDFS and write to a Kafka topic. |
 | innerjoin         | Shows how to use streaming innerjoin operator|
 | jdbcIngest        | Shows how to read rows from a table in an SQL database, polling and non-polling fashion, and write them to a file in HDFS. |
+| innerjoin         | Shows how to use streaming innerjoin operator|
+| jdbcIngest        | Shows how to read rows from a table in an SQL database and write them to a file in HDFS |
 | jdbcToJdbc        | This application reads from an input table using JDBC, converts input to user defined POJO & then writes those POJOS to another table. |
 | jmsActiveMQ       | Shows how to use the JMS input operator to read from an ActiveMQ queue |
 | kafka             | Shows how to read from Kafka using the new 0.9 input operator and write to HDFS using rolling output files. |
