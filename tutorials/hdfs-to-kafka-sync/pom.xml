@@ -15,7 +15,7 @@
   <properties>
     <!-- change this if you desire to use a different version of Apex Core -->
     <apex.version>3.4.0</apex.version>
-    <malhar.version>3.4.0</malhar.version>
+    <malhar.version>3.5.0</malhar.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
   </properties>
 
@@ -239,24 +239,28 @@
     <dependency>
       <groupId>org.apache.apex</groupId>
       <artifactId>malhar-library</artifactId>
-      <version>3.4.0</version>
+      <version>${malhar.version}</version>
       <!-- 
            If you know that your application does not need transitive dependencies pulled in by malhar-library,
            uncomment the following to reduce the size of your app package.
       -->
-      <!--    
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
           <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
-      -->
     </dependency>
     <dependency>
       <groupId>org.apache.apex</groupId>
       <artifactId>malhar-contrib</artifactId>
-      <version>3.4.0</version>
+      <version>${malhar.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.apex</groupId>

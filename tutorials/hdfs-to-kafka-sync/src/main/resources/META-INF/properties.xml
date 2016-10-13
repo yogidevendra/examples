@@ -2,15 +2,15 @@
 <configuration>
   <property>
     <name>dt.operator.kafkaOutput.prop.topic</name>
-    <value>hdfs2kafka</value>
+    <value>test</value>
   </property>
   <property>
-    <name>dt.operator.lines.prop.directory</name>
-    <value>/tmp/hdfs2kafka</value>
+    <name>dt.operator.recordReader.prop.files</name>
+    <value>hdfs://source-namenode-service:port/path-to-input-directory</value>
   </property>
   <property>
     <name>dt.operator.kafkaOutput.prop.producerProperties</name>
-    <value>serializer.class=kafka.serializer.StringEncoder,producer.type=async,metadata.broker.list=localhost:9092</value>
+    <value>serializer.class=kafka.serializer.DefaultEncoder,producer.type=async,metadata.broker.list=localhost:9092</value>
   </property>
 </configuration>
 

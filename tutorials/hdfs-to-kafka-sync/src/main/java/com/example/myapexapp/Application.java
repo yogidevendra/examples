@@ -1,13 +1,14 @@
 package com.example.myapexapp;
 
+import org.apache.apex.malhar.lib.fs.FSRecordReaderModule;
 import org.apache.hadoop.conf.Configuration;
 
-import com.datatorrent.api.annotation.ApplicationAnnotation;
-import com.datatorrent.api.StreamingApplication;
+import com.datatorrent.api.Context.PortContext;
 import com.datatorrent.api.DAG;
 import com.datatorrent.api.DAG.Locality;
+import com.datatorrent.api.StreamingApplication;
+import com.datatorrent.api.annotation.ApplicationAnnotation;
 import com.datatorrent.contrib.kafka.KafkaSinglePortOutputOperator;
-import org.apache.apex.malhar.lib.fs.LineByLineFileInputOperator;
 
 @ApplicationAnnotation(name="HDFS-to-Kafka-Sync")
 public class Application implements StreamingApplication
@@ -16,11 +17,12 @@ public class Application implements StreamingApplication
   @Override
   public void populateDAG(DAG dag, Configuration conf)
   {
-    LineByLineFileInputOperator in = dag.addOperator("lines",
-                                                     LineByLineFileInputOperator.class);
+    FSRecordReaderModule lineReader = dag.addModule("recordReader", FSRecordReaderModule.class);
 
-    KafkaSinglePortOutputOperator<String,String> out = dag.addOperator("kafkaOutput", new KafkaSinglePortOutputOperator<String,String>());
+    KafkaSinglePortOutputOperator<String,byte[]> out = 
+        dag.addOperator("kafkaOutput", new KafkaSinglePortOutputOperator<String,byte[]>());
 
-    dag.addStream("data", in.output, out.inputPort).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("data", lineReader.records, out.inputPort).setLocality(Locality.CONTAINER_LOCAL);
+    dag.setInputPortAttribute(out.inputPort, PortContext.PARTITION_PARALLEL, true);
   }
 }
