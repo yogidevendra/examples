@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- 
+  <property>
+    <name>dt.application.{appName}.operator.{opName}.prop.{propName}</name>
+    <value>some-default-value (if value is not specified, it is required from the user or custom config when launching)</value>
+  </property>
+  -->
+  <!-- memory assigned to app master
+  <property>
+    <name>dt.attr.MASTER_MEMORY_MB</name>
+    <value>1024</value>
+  </property>
+  -->
+  <property>
+    <name>dt.operator.recordReader.prop.files</name>
+    <value>hdfs://source-namenode-service:port/path-to-input-directory</value>
+  </property>
+  <property>
+    <name>dt.operator.fileOutput.prop.filePath</name>
+    <value>hdfs://destination-namenode-service:port/path-to-output-directory</value>
+  </property>
+  <property>
+    <name>dt.operator.fileOutput.prop.outputFileName</name>
+    <value>output_file_name.txt</value>
+  </property>
+</configuration>
+

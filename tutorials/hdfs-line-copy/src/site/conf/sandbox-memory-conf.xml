@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<configuration>
+  <property>
+    <name>dt.operator.recordReader.prop.maxReaders</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>dt.operator.recordReader.prop.blocksThreshold</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>dt.operator.recordReader.prop.blockSize</name>
+    <value>1048576</value>
+  </property>
+  <property>
+    <name>dt.operator.*.attr.MEMORY_MB</name>
+    <value>512</value>
+  </property>
+  <property>
+    <name>dt.attr.MASTER_MEMORY_MB</name>
+    <value>768</value>
+  </property>
+</configuration>

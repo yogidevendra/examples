@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+  <property>
+    <name>dt.operator.recordReader.prop.minReaders</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>dt.operator.recordReader.prop.maxReaders</name>
+    <value>16</value>
+  </property>
+  <property>
+    <name>dt.operator.recordReader.prop.blocksThreshold</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>dt.operator.recordReader.prop.blockSize</name>
+    <value>1048576</value>
+  </property>
+</configuration>
