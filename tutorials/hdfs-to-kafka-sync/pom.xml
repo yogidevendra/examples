@@ -2,14 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>com.example</groupId>
-  <version>1.0-SNAPSHOT</version>
-  <artifactId>hdfsToKafka</artifactId>
+  <groupId>com.datatorrent.apps</groupId>
+  <version>0.8</version>
+  <artifactId>hdfs-to-kafka-sync</artifactId>
   <packaging>jar</packaging>
 
   <!-- change these to the appropriate values -->
-  <name>HDFS to Kafka</name>
-  <description>Simple application to transfer data from HDFS to Kafka</description>
+  <name>HDFS to Kafka Sync App</name>
+  <description>Ingest lines from hadoop HDFS to Apache Kafka. This application lines from configured HDFS path and writes each line as a message in configured Apache Kafka topic. 
+  The source code is available at: https://github.com/DataTorrent/examples/blob/master/tutorials/hdfs2kafka. Send feedback or feature requests to: feedback@datatorrent.com </description>
 
   <properties>
     <!-- change this if you desire to use a different version of Apex Core -->

@@ -9,7 +9,7 @@ import com.datatorrent.api.DAG.Locality;
 import com.datatorrent.contrib.kafka.KafkaSinglePortOutputOperator;
 import org.apache.apex.malhar.lib.fs.LineByLineFileInputOperator;
 
-@ApplicationAnnotation(name="Hdfs2Kafka")
+@ApplicationAnnotation(name="HDFS-to-Kafka-Sync")
 public class Application implements StreamingApplication
 {
 
