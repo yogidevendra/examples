@@ -27,7 +27,6 @@ public class Application implements StreamingApplication
     KafkaSinglePortOutputOperator<String,byte[]> out = 
         dag.addOperator("kafkaOutput", new KafkaSinglePortOutputOperator<String,byte[]>());
 
-    dag.addStream("data", lineReader.records, out.inputPort).setLocality(Locality.CONTAINER_LOCAL);
-    dag.setInputPortAttribute(out.inputPort, PortContext.PARTITION_PARALLEL, true);
+    dag.addStream("data", lineReader.records, out.inputPort);
   }
 }

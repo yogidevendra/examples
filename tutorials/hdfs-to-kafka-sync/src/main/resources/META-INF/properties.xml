@@ -13,4 +13,3 @@
     <value>serializer.class=kafka.serializer.DefaultEncoder,producer.type=async,metadata.broker.list=localhost:9092</value>
   </property>
 </configuration>
-
