@@ -1,4 +1,9 @@
-package com.example.myapexapp;
+/**
+ * Copyright (c) 2016 DataTorrent, Inc.
+ * All rights reserved.
+ */
+
+package com.datatorrent.apps;
 
 import org.apache.apex.malhar.lib.fs.FSRecordReaderModule;
 import org.apache.hadoop.conf.Configuration;

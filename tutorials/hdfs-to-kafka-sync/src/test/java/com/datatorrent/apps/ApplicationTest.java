@@ -1,4 +1,9 @@
-package com.example.myapexapp;
+/**
+ * Copyright (c) 2016 DataTorrent, Inc.
+ * All rights reserved.
+ */
+
+package com.datatorrent.apps;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 
 import com.datatorrent.api.LocalMode;
+import com.datatorrent.apps.Application;
 
 import info.batey.kafka.unit.KafkaUnit;
 import info.batey.kafka.unit.KafkaUnitRule;
