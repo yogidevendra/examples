@@ -34,7 +34,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class ApplicationTest {
   private static final Logger LOG = LoggerFactory.getLogger(ApplicationTest.class);
-  private static final String TOPIC = "hdfs2kafka";
+  private static final String TOPIC = "test";
   private static final String directory = "target/hdfs2kafka";
   private static final String FILE_NAME = "messages.txt";
 

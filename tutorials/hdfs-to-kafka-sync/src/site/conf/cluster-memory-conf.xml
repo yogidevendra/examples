@@ -16,4 +16,9 @@
     <name>dt.operator.recordReader.prop.blockSize</name>
     <value>1048576</value>
   </property>
+  <property>
+    <name>dt.operator.kafkaOutput.attr.PARTITIONER</name>
+    <value>com.datatorrent.common.partitioner.StatelessPartitioner:16</value>
+  </property>
+  
 </configuration>
