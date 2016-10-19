@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>dt.operator.JdbcPoller.prop.store.databaseDriver</name>
+        <value>com.mysql.jdbc.Driver</value>
+    </property>
+
+    <property>
+        <name>dt.operator.JdbcPoller.prop.store.databaseUrl</name>
+        <value>jdbc:mysql://localhost:3306/testDev</value>
+    </property>
+
+    <property>
+        <name>dt.operator.JdbcPoller.prop.store.userName</name>
+        <value>root</value>
+    </property>
+    
+    <property>
+        <name>dt.operator.JdbcPoller.prop.store.password</name>
+        <value>mysql</value>
+    </property>
+
+    <!-- Table name -->
+    <property>
+        <name>dt.operator.JdbcPoller.prop.tableName</name>
+        <value>test_event_table</value>
+    </property>
+
+  <property>
+    <name>dt.operator.fileOutput.prop.filePath</name>
+    <value>/tmp</value>
+  </property>
+  <property>
+    <name>dt.operator.fileOutput.prop.outputFileName</name>
+    <value>output.txt</value>
+  </property>
+
+</configuration>

@@ -15,27 +15,59 @@ import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import com.datatorrent.api.LocalMode;
-import com.datatorrent.apps.JdbcPollerApplication;
+import com.datatorrent.apps.Application;
 
-public class JdbcPollerApplicationTest
+public class ApplicationTest
 {
   private static final String DB_DRIVER = "org.hsqldb.jdbcDriver";
   private static final String URL = "jdbc:hsqldb:mem:test;sql.syntax_mys=true";
   private static final String TABLE_NAME = "test_event_table";
-  private static final String OUTPUT_DIR_NAME = "/tmp/test/output";
+  
+  private String outputDir;
+  
+  public static class TestMeta extends TestWatcher
+  {
+    public String baseDirectory;
 
+    @Override
+    protected void starting(org.junit.runner.Description description)
+    {
+      this.baseDirectory = "target/" + description.getClassName() + "/" + description.getMethodName();
+    }
+    
+    @Override
+    protected void finished(Description description)
+    {
+      super.finished(description);
+      try {
+        FileUtils.forceDelete(new File(baseDirectory));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+  }
+  
+  @Rule
+  public TestMeta testMeta = new TestMeta();
+  
+  @Before
+  public void setupOutputDir() throws Exception
+  {
+    outputDir = testMeta.baseDirectory + File.separator + "output";
+  }
+  
   @BeforeClass
   public static void setup()
   {
-    try {
-      cleanup();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
     try {
       Class.forName(DB_DRIVER).newInstance();
 
@@ -48,16 +80,6 @@ public class JdbcPollerApplicationTest
       cleanTable();
       insertEventsInTable(10, 0);
     } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  @AfterClass
-  public static void cleanup()
-  {
-    try {
-      FileUtils.deleteDirectory(new File(OUTPUT_DIR_NAME));
-    } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }
@@ -97,17 +119,10 @@ public class JdbcPollerApplicationTest
     try {
       LocalMode lma = LocalMode.newInstance();
       Configuration conf = new Configuration(false);
-      conf.set("dt.application.PollJdbcToHDFSApp.operator.JdbcPoller.prop.store.databaseUrl", URL);
-      conf.set("dt.application.PollJdbcToHDFSApp.operator.JdbcPoller.prop.store.databaseDriver", DB_DRIVER);
-      conf.setInt("dt.application.PollJdbcToHDFSApp.operator.JdbcPoller.prop.partitionCount", 2);
-      conf.set("dt.application.PollJdbcToHDFSApp.operator.JdbcPoller.prop.key", "ACCOUNT_NO");
-      conf.set("dt.application.PollJdbcToHDFSApp.operator.JdbcPoller.prop.columnsExpression", "ACCOUNT_NO,NAME,AMOUNT");
-      conf.set("dt.application.PollJdbcToHDFSApp.operator.JdbcPoller.prop.tableName", TABLE_NAME);
-      conf.set("dt.application.PollJdbcToHDFSApp.operator.JdbcPoller.port.outputPort.attr.TUPLE_CLASS",
-          "com.example.mydtapp.PojoEvent");
-      conf.set("dt.application.PollJdbcToHDFSApp.operator.Writer.filePath", OUTPUT_DIR_NAME);
+      conf.addResource(this.getClass().getResourceAsStream("/META-INF/properties-test.xml"));
+      conf.set("dt.operator.fileOutput.prop.filePath", outputDir);
 
-      lma.prepareDAG(new JdbcPollerApplication(), conf);
+      lma.prepareDAG(new Application(), conf);
       LocalMode.Controller lc = lma.getController();
       lc.runAsync();
 
@@ -115,7 +130,7 @@ public class JdbcPollerApplicationTest
       Thread.sleep(5000);
 
       String[] extensions = { "dat.0", "tmp" };
-      Collection<File> list = FileUtils.listFiles(new File(OUTPUT_DIR_NAME), extensions, false);
+      Collection<File> list = FileUtils.listFiles(new File(outputDir), extensions, false);
       int recordsCount = 0;
       for (File file : list) {
         recordsCount += FileUtils.readLines(file).size();
