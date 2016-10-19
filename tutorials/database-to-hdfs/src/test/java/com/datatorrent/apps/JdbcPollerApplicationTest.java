@@ -1,4 +1,4 @@
-package com.example.mydtapp;
+package com.datatorrent.apps;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.datatorrent.api.LocalMode;
+import com.datatorrent.apps.JdbcPollerApplication;
 
 public class JdbcPollerApplicationTest
 {

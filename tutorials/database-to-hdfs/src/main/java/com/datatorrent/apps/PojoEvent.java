@@ -1,4 +1,4 @@
-package com.example.mydtapp;
+package com.datatorrent.apps;
 
 public class PojoEvent
 {
