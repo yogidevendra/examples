@@ -23,7 +23,7 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 import com.datatorrent.api.LocalMode;
-import com.datatorrent.apps.Application;
+import com.datatorrent.apps.JdbcPollerApplication;
 
 public class ApplicationTest
 {
@@ -122,7 +122,7 @@ public class ApplicationTest
       conf.addResource(this.getClass().getResourceAsStream("/META-INF/properties-test.xml"));
       conf.set("dt.operator.fileOutput.prop.filePath", outputDir);
 
-      lma.prepareDAG(new Application(), conf);
+      lma.prepareDAG(new JdbcPollerApplication(), conf);
       LocalMode.Controller lc = lma.getController();
       lc.runAsync();
 

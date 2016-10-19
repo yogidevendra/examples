@@ -36,7 +36,7 @@ import com.datatorrent.lib.util.FieldInfo.SupportType;
 import com.google.common.collect.Lists;
 
 @ApplicationAnnotation(name = "Database-to-HDFS")
-public class Application implements StreamingApplication
+public class JdbcPollerApplication implements StreamingApplication
 {
   public void populateDAG(DAG dag, Configuration conf)
   {
