@@ -17,7 +17,6 @@
     <apex.version>3.4.0</apex.version>
     <malhar.version>3.6.0-SNAPSHOT</malhar.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
-    <tags>app-template, hdfs, kafka, sync</tags>
   </properties>
 
   <build>
