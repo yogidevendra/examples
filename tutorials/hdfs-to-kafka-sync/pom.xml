@@ -17,6 +17,7 @@
     <apex.version>3.4.0</apex.version>
     <malhar.version>3.6.0-SNAPSHOT</malhar.version>
     <apex.apppackage.classpath>lib/*.jar</apex.apppackage.classpath>
+    <tags>app-template, hdfs, kafka, sync</tags>
   </properties>
 
   <build>
@@ -314,7 +315,16 @@
         </exclusion>
       </exclusions>
     </dependency>
-
+    <dependency>
+      <groupId>net.sf.supercsv</groupId>
+      <artifactId>super-csv</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>janino</artifactId>
+      <version>2.7.8</version>
+    </dependency>
   </dependencies>
 
 </project>

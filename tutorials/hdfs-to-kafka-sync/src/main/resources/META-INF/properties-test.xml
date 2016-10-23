@@ -1,25 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0"?>
 <configuration>
   <property>
-    <name>dt.operator.recordReader.prop.minReaders</name>
-    <value>1</value>
+    <name>dt.operator.kafkaOutput.prop.topic</name>
+    <value>test</value>
   </property>
   <property>
-    <name>dt.operator.recordReader.prop.maxReaders</name>
-    <value>16</value>
+    <name>dt.operator.recordReader.prop.files</name>
+    <value>src/test/resources/test_events.txt</value>
   </property>
   <property>
-    <name>dt.operator.recordReader.prop.blocksThreshold</name>
-    <value>1</value>
+    <name>dt.operator.kafkaOutput.prop.producerProperties</name>
+    <value>serializer.class=kafka.serializer.DefaultEncoder,producer.type=async,metadata.broker.list=localhost:9092</value>
   </property>
-  <property>
-    <name>dt.operator.recordReader.prop.blockSize</name>
-    <value>1048576</value>
-  </property>
-  <property>
-    <name>dt.operator.kafkaOutput.attr.PARTITIONER</name>
-    <value>com.datatorrent.common.partitioner.StatelessPartitioner:16</value>
-  </property>
+  
   <!--Uncomment this block to customize the application-->
   <property>
     <name>dt.operator.csvParser.prop.schema</name>
@@ -67,6 +60,11 @@
   </value>
   </property>  
   <property>
+    <name>dt.operator.csvParser.port.out.attr.TUPLE_CLASS</name>
+    <value>com.datatorrent.apps.PojoEvent</value>
+  </property>
+
+  <property>
     <name>dt.operator.formatter.port.in.attr.TUPLE_CLASS</name>
     <value>com.datatorrent.apps.PojoEvent</value>
   </property>
@@ -80,4 +78,5 @@
     <name>dt.operator.transform.port.output.attr.TUPLE_CLASS</name>
     <value>com.datatorrent.apps.PojoEvent</value>
   </property>
+  
 </configuration>
